@@ -5,24 +5,31 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useMenu from '../../../hooks/useMenu';
 import OrderTab from '../OrderTab/OrderTab';
-import { useParams } from 'react-router';
+
 import { Helmet } from 'react-helmet-async';
+
 
 const Order = () => {
   
-    const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
-   
-    const { category } = useParams();
-    const initialIndex = categories.indexOf(category);
-    console.log(initialIndex)
-    const [tabIndex, setTabIndex] = useState(initialIndex);
+  
+    // let initialIndex = categories.indexOf(category);
+    // console.log(initialIndex)
+    const [tabIndex, setTabIndex] = useState(0);
     const [menu] = useMenu();
     
-    const desserts = menu.filter(item => item.category === 'dessert');
-    const soup = menu.filter(item => item.category === 'soup');
-    const salad = menu.filter(item => item.category === 'salad');
-    const pizza = menu.filter(item => item.category === 'pizza');
-    const drinks = menu.filter(item => item.category === 'drinks');
+
+    
+    const desserts = menu?.filter(item => item.category === 'dessert');
+    const soup = menu?.filter(item => item.category === 'soup');
+    const salad = menu?.filter(item => item.category === 'salad');
+    const pizza = menu?.filter(item => item.category === 'pizza');
+    const drinks = menu?.filter(item => item.category === 'drinks');
+
+
+    
+
+  // Access location.pathname to get the current path
+ 
 
     return (
         <div>

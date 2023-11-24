@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { FaShoppingCart } from 'react-icons/fa';
+// import { FaShoppingCart } from 'react-icons/fa';
+import { IoMdNotifications } from "react-icons/io";
 import useCart from "../../../hooks/useCart";
 import useAdmin from "../../../hooks/useAdmin";
 import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
@@ -45,13 +46,13 @@ const NavBar = () => {
                                 ? "font-extrabold bg-primary text-white mr-1"
                                 : "mr-1"
                     }
-                    to={"/alljobs"}
+                    to={"/meals/salad"}
                 >
-                    All Jobs
+                     Meals
                 </NavLink>
             </li>
-            {
-                user ? <li>
+
+            <li>
                     <NavLink
                         className={({ isActive, isPending }) =>
                             isPending
@@ -62,12 +63,10 @@ const NavBar = () => {
                         }
                         to={"/appliedjobs"}
                     >
-                        Applied Jobs
+                        Up-Comming Meals
                     </NavLink>
-                </li> : ""
-            }
-            {
-                user ? <li>
+                </li>
+                <li>
                     <NavLink
                         className={({ isActive, isPending }) =>
                             isPending
@@ -76,28 +75,14 @@ const NavBar = () => {
                                     ? "font-extrabold bg-primary text-white mr-1"
                                     : "mr-1"
                         }
-                        to={"/myjobs"}
+                        to={"/appliedjobs"}
                     >
-                        My Jobs
+                        <span className="font-bold text-2xl"><IoMdNotifications /></span>
                     </NavLink>
-                </li> : ""
-            }
-            <li>
-                <NavLink
-                    className={({ isActive, isPending }) =>
-                        isPending
-                            ? "text-primary font-extrabold bg-info"
-                            : isActive
-                                ? "font-extrabold bg-primary text-white mr-1"
-                                : "mr-1"
-                    }
-                    to={"/blogs"}
-                >
-                    Blogs
-                </NavLink>
-            </li>
+                </li>
+               
             {
-                user ? <li>
+                !user ? <li>
                     <NavLink
                         className={({ isActive, isPending }) =>
                             isPending
@@ -106,12 +91,15 @@ const NavBar = () => {
                                     ? "font-extrabold bg-primary text-white mr-1"
                                     : "mr-1"
                         }
-                        to={"/addjob"}
+                        to={"/appliedjobs"}
                     >
-                        Add Job
+                        Join Us
                     </NavLink>
                 </li> : ""
             }
+          
+          
+          
         </>
     );
 
@@ -124,37 +112,36 @@ const NavBar = () => {
     }, [theme]);
 
 
-
     //testing ending
 
-    const navOptions = <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/menu">Our Menu</Link></li>
-        <li><Link to="/order/salad">Order Food</Link></li>
-        <li><Link to="/secret">Secret</Link></li>
-        {
-            user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
-        }
-        {
-            user && !isAdmin && <li><Link to="/dashboard/userHome">Dashboard</Link></li>
-        }
-        <li>
-            <Link to="/dashboard/cart">
-                <button className="btn">
-                    <FaShoppingCart className="mr-2"></FaShoppingCart>
-                    <div className="badge badge-secondary">+{cart.length}</div>
-                </button>
-            </Link>
-        </li>
-        {
-            user ? <>
-                {/* <span>{user?.displayName}</span> */}
-                <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
-            </> : <>
-                <li><Link to="/login">Login</Link></li>
-            </>
-        }
-    </>
+    // const navOptions = <>
+    //     <li><Link to="/">Home</Link></li>
+    //     <li><Link to="/menu">Our Menu</Link></li>
+    //     <li><Link to="/order/salad">Order Food</Link></li>
+    //     <li><Link to="/secret">Secret</Link></li>
+    //     {
+    //         user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
+    //     }
+    //     {
+    //         user && !isAdmin && <li><Link to="/dashboard/userHome">Dashboard</Link></li>
+    //     }
+    //     <li>
+    //         <Link to="/dashboard/cart">
+    //             <button className="btn">
+    //                 <FaShoppingCart className="mr-2"></FaShoppingCart>
+    //                 <div className="badge badge-secondary">+{cart.length}</div>
+    //             </button>
+    //         </Link>
+    //     </li>
+    //     {
+    //         user ? <>
+    //             {/* <span>{user?.displayName}</span> */}
+    //             <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
+    //         </> : <>
+    //             <li><Link to="/login">Login</Link></li>
+    //         </>
+    //     }
+    // </>
 
     // return (
     //     <>
@@ -186,6 +173,7 @@ const NavBar = () => {
         <div className="bg-info text-white">
             <div className="navbar max-w-screen-xl mx-auto p-4">
                 <div className="navbar-start">
+                    
                     <div className="dropdown b">
                         <label tabIndex={0} className="btn  btn-ghost lg:hidden">
                             <svg
@@ -202,6 +190,7 @@ const NavBar = () => {
                                     d="M4 6h16M4 12h8m-8 6h16"
                                 />
                             </svg>
+                           
                         </label>
                         <ul
                             tabIndex={0}
@@ -209,6 +198,9 @@ const NavBar = () => {
                         >
                             {navLinks}
                         </ul>
+                    </div>
+                    <div>
+                        Hotel
                     </div>
                     <Link to={"/"}>
                         <div title={user?.displayName} className="flex items-center ">
@@ -241,7 +233,7 @@ const NavBar = () => {
                                     <p className="text-xl">{user?.displayName}</p>
                                 </li>
                                 <li>
-                                    <a className="text-xl" onClick={handleLogout}>
+                                    <a className="text-xl" onClick={handleLogOut}>
                                         Logout
                                     </a>
 

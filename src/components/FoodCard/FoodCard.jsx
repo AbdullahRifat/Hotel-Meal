@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 
@@ -65,10 +65,18 @@ const FoodCard = ({ item }) => {
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions justify-end">
-                    <button
-                        onClick={handleAddToCart}
-                        className="btn btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 mt-4"
-                    >Add to Cart</button>
+                    <Link to={{
+                        pathname: `mealdetails/${_id}`,
+                        state: { item }, // Pass the meal object as state
+                    }}
+
+
+                    >
+                        <button
+                            // onClick={handleAddToCart}
+                            className="btn btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 mt-4"
+                        >Details</button>
+                    </Link>
                 </div>
             </div>
         </div>

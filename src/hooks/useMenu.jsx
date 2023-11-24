@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import useAxiosPublic from "./useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 
@@ -15,9 +15,13 @@ const useMenu = () => {
         queryFn: async()=> {
             const res = await axiosPublic.get('menu')
             return res.data
-        }
+        },
+        staleTime: Infinity,
     })
+
+  
     return [menu, loading,refetch];
 };
+
 
 export default useMenu;

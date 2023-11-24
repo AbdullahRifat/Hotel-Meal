@@ -20,6 +20,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PayementHistory from "../pages/Dashboard/PaymentHistory/PayementHistory";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import FoodCardDetails from "../components/FoodCardDetails/FoodCardDetails";
 
 
   export const router = createBrowserRouter([
@@ -36,8 +37,12 @@ import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
           element: <Menu></Menu>
         },
         {
-          path: 'order/:category',
+          path: 'meals/:category',
           element: <Order></Order>
+        },
+        {
+          path: 'mealdetails/:id',
+          element: <FoodCardDetails></FoodCardDetails>
         },
         {
           path: 'login',
