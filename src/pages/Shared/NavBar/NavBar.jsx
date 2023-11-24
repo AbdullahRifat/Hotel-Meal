@@ -46,7 +46,7 @@ const NavBar = () => {
                                 ? "font-extrabold bg-primary text-white mr-1"
                                 : "mr-1"
                     }
-                    to={"/meals/salad"}
+                    to={"/meals"}
                 >
                      Meals
                 </NavLink>

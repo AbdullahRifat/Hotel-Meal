@@ -7,7 +7,7 @@ import AddMealForm from "../../Shared/SignupForm/addMealForm";
 
 const AddItems = () => {
     return (
-        <div>
+        <div className="border-double border-4 border-sky-500 p-4">
             <SectionTitle heading="ADD AN ITEM" subHeading="What a new??"></SectionTitle>
             <AddMealForm></AddMealForm>
             

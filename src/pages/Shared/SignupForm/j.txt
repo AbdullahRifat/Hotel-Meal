@@ -11,7 +11,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const AddMealForm = () => {
   const { register, handleSubmit, reset } = useForm();
-
+  const [startDate, setStartDate] = useState(new Date());
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
 
@@ -32,7 +32,7 @@ const AddMealForm = () => {
         description: data.description,
         price: parseFloat(data.price),
         rating: 0,
-        postTime: data.date,
+        dateTime: data.date,
         likes: 0,
         reviews: 0,
         distributorName: data.distributorName,
@@ -161,9 +161,8 @@ const AddMealForm = () => {
             <label className="label">
             <span className="label-text">Date*</span>
             </label>
-            <input
-           {...register("date", { required: true })}
-            type="date" />
+            <DatePicker className="w-32 border-solid border-2 border-black rounded-md" {...register("date", { required: true })}
+            type="date" selected={startDate} onChange={(date) => setStartDate(date)} />
         </div>
 
 

@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../pages/Shared/Footer/Footer";
 import NavBar from "../pages/Shared/NavBar/NavBar";
+import FoodCard2 from "../components/FoodCard/FoodCard2";
 
 
 
@@ -12,6 +13,7 @@ const Main = () => {
     return (
         <div>
             { noHeaderFooter || <NavBar></NavBar>}
+            
             <Outlet></Outlet>
             { noHeaderFooter || <Footer></Footer>}
         </div>

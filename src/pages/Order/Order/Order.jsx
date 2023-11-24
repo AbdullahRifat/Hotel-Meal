@@ -19,11 +19,10 @@ const Order = () => {
     
 
     
-    const desserts = menu?.filter(item => item.category === 'dessert');
-    const soup = menu?.filter(item => item.category === 'soup');
-    const salad = menu?.filter(item => item.category === 'salad');
-    const pizza = menu?.filter(item => item.category === 'pizza');
-    const drinks = menu?.filter(item => item.category === 'drinks');
+    const breakFast = menu?.filter(item => item.category === 'breakfast');
+    const lunch = menu?.filter(item => item.category === 'lunch');
+    const dinner = menu?.filter(item => item.category === 'dinner');
+
 
 
     
@@ -39,27 +38,25 @@ const Order = () => {
             <Cover img={orderCoverImg} title="Order Food"></Cover>
             <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
-                    <Tab>Salad</Tab>
-                    <Tab>Pizza</Tab>
-                    <Tab>Soup</Tab>
-                    <Tab>Dessert</Tab>
-                    <Tab>Drinks</Tab>
+                    <Tab>All Meals</Tab>
+                    <Tab>Break-Fast</Tab>
+                    <Tab>Lunch</Tab>
+                    <Tab>Dinner</Tab>
+                   
                 </TabList>
                 <TabPanel>
-                    <OrderTab items={salad}></OrderTab>
+                    <OrderTab items={menu}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                    <OrderTab items={pizza}></OrderTab>
+                    <OrderTab items={breakFast}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                    <OrderTab items={soup}></OrderTab>
+                    <OrderTab items={lunch}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                    <OrderTab items={desserts}></OrderTab>
+                    <OrderTab items={dinner}></OrderTab>
                 </TabPanel>
-                <TabPanel>
-                    <OrderTab items={drinks}></OrderTab>
-                </TabPanel>
+                
             </Tabs>
         </div>
     );

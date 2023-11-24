@@ -6,7 +6,7 @@ import useCart from "../../hooks/useCart";
 
 
 const FoodCard = ({ item }) => {
-    const { name, image, price, recipe, _id } = item;
+    const { title, image, price, ingredient, _id } = item;
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
@@ -62,8 +62,8 @@ const FoodCard = ({ item }) => {
             <figure><img src={image} alt="Shoes" /></figure>
             <p className="absolute right-0 mr-4 mt-4 px-4 bg-slate-900 text-white">${price}</p>
             <div className="card-body flex flex-col items-center">
-                <h2 className="card-title">{name}</h2>
-                <p>{recipe}</p>
+                <h2 className="card-title">{title}</h2>
+                <p>{ ingredient}</p>
                 <div className="card-actions justify-end">
                     <Link to={{
                         pathname: `mealdetails/${_id}`,

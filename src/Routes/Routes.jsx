@@ -21,6 +21,7 @@ import PayementHistory from "../pages/Dashboard/PaymentHistory/PayementHistory";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import FoodCardDetails from "../components/FoodCardDetails/FoodCardDetails";
+import AllMeals from "../pages/Order/Order/AllMeals";
 
 
   export const router = createBrowserRouter([
@@ -37,8 +38,8 @@ import FoodCardDetails from "../components/FoodCardDetails/FoodCardDetails";
           element: <Menu></Menu>
         },
         {
-          path: 'meals/:category',
-          element: <Order></Order>
+          path: 'meals',
+          element: <AllMeals></AllMeals>
         },
         {
           path: 'mealdetails/:id',
