@@ -42,6 +42,18 @@ import AllMeals from "../pages/Order/Order/AllMeals";
           element: <AllMeals></AllMeals>
         },
         {
+          path: 'meals',  // The '/meals' path should display AllMeals
+          element: <AllMeals></AllMeals>,
+          
+           
+          
+        },
+        {
+          path: 'meals/mealdetails/:id', // Define the nested route for meal details under 'meals'
+          element: <FoodCardDetails></FoodCardDetails>
+        }
+        ,
+        {
           path: 'mealdetails/:id',
           element: <FoodCardDetails></FoodCardDetails>
         },

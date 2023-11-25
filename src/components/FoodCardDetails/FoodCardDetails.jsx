@@ -35,7 +35,7 @@ const FoodCardDetails = () => {
   }, [id]);
 
   if (isLoading) {
-     <LoaderAnimations></LoaderAnimations>
+     return <LoaderAnimations></LoaderAnimations>
   }
 
   if (error) {
@@ -69,7 +69,7 @@ const FoodCardDetails = () => {
           Ingredients: {ingredients?.map((ingredient,idx)=> <span key={idx}>{ingredient} ,</span>)} <br />
           Description: {description} <br />
           Price: ${price} <br />
-          Rating: {<Rating style={{ maxWidth: 250 }} value={rating}  />} <br />
+          Rating: {<Rating style={{ maxWidth: 250 }} value={parseInt(rating?rating:0)}  />} <br />
           Date: 2023-11-24T12:00:00.000Z <br />
           Likes: 15 <br />
           Reviews: 3 <br />

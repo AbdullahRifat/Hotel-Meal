@@ -7,11 +7,13 @@ import Swal from 'sweetalert2'
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../Shared/Social/SocialLogin";
 
+
 const SignUp = () => {
     const axiosPublic = useAxiosPublic()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
+   
 
     const onSubmit = data => {
         console.log(data);
@@ -21,9 +23,11 @@ const SignUp = () => {
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
+
                         const userinfo ={
                             name: data.name,
                             email: data.email,
+                            subscription:"bronze"
                         }
                         axiosPublic.post('/users',userinfo)
                         .then(res=>{
