@@ -7,6 +7,7 @@ import useMenu from '../../../hooks/useMenu';
 import OrderTab from '../OrderTab/OrderTab';
 
 import { Helmet } from 'react-helmet-async';
+import LoaderAnimations from '../../Shared/Loader/LoaderAnmations';
 
 
 const Order = () => {
@@ -15,7 +16,7 @@ const Order = () => {
     // let initialIndex = categories.indexOf(category);
     // console.log(initialIndex)
     const [tabIndex, setTabIndex] = useState(0);
-    const [menu] = useMenu();
+    const [menu,loading,refetch] = useMenu();
     
 
     
@@ -23,7 +24,7 @@ const Order = () => {
     const lunch = menu?.filter(item => item.category === 'lunch');
     const dinner = menu?.filter(item => item.category === 'dinner');
 
-/// infine scrolling
+
 
 
     
@@ -39,8 +40,9 @@ const Order = () => {
             <Helmet>
                 <title>Hostel Food | Order Food</title>
             </Helmet>
-            <Cover img={orderCoverImg} title="Meals By Category"></Cover>
-            <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+            <Cover img={orderCoverImg} title="Meals By Category" description="We Are providing Breakfast,lunch and Dinner"></Cover>
+            {
+                loading?<LoaderAnimations></LoaderAnimations>:<Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
                     <Tab>All Meals</Tab>
                     <Tab>Break-Fast</Tab>
@@ -62,6 +64,7 @@ const Order = () => {
                 </TabPanel>
                 
             </Tabs>
+            }
         </div>
     );
 };

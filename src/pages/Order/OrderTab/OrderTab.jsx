@@ -41,7 +41,6 @@
 import { useState, useEffect } from 'react';
 import FoodCard from '../../../components/FoodCard/FoodCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -51,32 +50,31 @@ const OrderTab = ({ items }) => {
     const [visibleItems, setVisibleItems] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
-    const itemsPerPage = 6; // Adjust this as per your requirement
-    const delayDuration = 1000; // Adjust the delay duration in milliseconds
+    const itemsPerPage = 6; // Display 6 items per page
 
     useEffect(() => {
-        // Reset the visible items when items prop changes (e.g., due to tab change)
-        setVisibleItems([]);
-        setPage(1);
-        setHasMore(true);
+        // Set the initial visible items to the first 6 items
+        const initialVisibleItems = items.slice(0, itemsPerPage);
+        setVisibleItems(initialVisibleItems);
+        
+        // Check if there are more items to load
+        if (initialVisibleItems.length >= items.length) {
+            setHasMore(false);
+        }
     }, [items]);
 
     const fetchMoreData = () => {
-        // Calculate the range of items to display based on pagination
-        const startIndex = (page - 1) * itemsPerPage;
+        const startIndex = page * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         const newVisibleItems = items.slice(startIndex, endIndex);
 
         setVisibleItems(prevItems => [...prevItems, ...newVisibleItems]);
         setPage(page + 1);
 
-        // Show loader and delay for the next set of items
-        setTimeout(() => {
-            // Check if all items are loaded
-            if (endIndex >= items.length) {
-                setHasMore(false);
-            }
-        }, delayDuration);
+        // Check if all items are loaded
+        if (endIndex >= items.length) {
+            setHasMore(false);
+        }
     };
 
     return (
@@ -84,8 +82,8 @@ const OrderTab = ({ items }) => {
             dataLength={visibleItems.length}
             next={fetchMoreData}
             hasMore={hasMore}
-            loader={<LoaderAnimations></LoaderAnimations>}
-            endMessage={<p className=' text-3xl font-bold text-center'>No more items to show</p>}
+            loader={<LoaderAnimations className="min-h-1/2" />}
+            endMessage={<p className='text-3xl font-bold text-center'>No more items to show</p>}
         >
             <Swiper pagination={{ clickable: true }} className="mySwiper">
                 <SwiperSlide>
@@ -101,4 +99,5 @@ const OrderTab = ({ items }) => {
 };
 
 export default OrderTab;
+
 

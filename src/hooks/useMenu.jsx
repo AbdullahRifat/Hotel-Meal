@@ -16,7 +16,7 @@ const useMenu = () => {
             const res = await axiosPublic.get('menu')
             return res.data
         },
-        staleTime: Infinity,
+     
     })
 
   

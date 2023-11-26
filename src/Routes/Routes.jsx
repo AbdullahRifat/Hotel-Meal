@@ -22,6 +22,7 @@ import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import FoodCardDetails from "../components/FoodCardDetails/FoodCardDetails";
 import AllMeals from "../pages/Order/Order/AllMeals";
+import UpComming from "../pages/Order/Order/UpComming";
 
 
   export const router = createBrowserRouter([
@@ -68,6 +69,14 @@ import AllMeals from "../pages/Order/Order/AllMeals";
         {
           path: 'secret',
           element: <PrivateRoute><Secret></Secret></PrivateRoute>
+        },
+        {
+          path: 'upcoming',
+          element: <UpComming></UpComming>
+        },
+        {
+          path: 'upcoming/mealdetails/:id', // Define the nested route for meal details under 'meals'
+          element: <FoodCardDetails></FoodCardDetails>
         },
         {
           path: 'checkout/:type',

@@ -61,7 +61,7 @@ const NavBar = () => {
                                     ? "font-extrabold bg-primary text-white mr-1"
                                     : "mr-1"
                         }
-                        to={"/appliedjobs"}
+                        to={"/upcoming"}
                     >
                         Up-Comming Meals
                     </NavLink>
@@ -75,7 +75,7 @@ const NavBar = () => {
                                     ? "font-extrabold bg-primary text-white mr-1"
                                     : "mr-1"
                         }
-                        to={"/appliedjobs"}
+                        to={"/notifications"}
                     >
                         <span className="font-bold text-2xl"><IoMdNotifications /></span>
                     </NavLink>
@@ -91,7 +91,7 @@ const NavBar = () => {
                                     ? "font-extrabold bg-primary text-white mr-1"
                                     : "mr-1"
                         }
-                        to={"/appliedjobs"}
+                        to={"/login"}
                     >
                         Join Us
                     </NavLink>
