@@ -23,6 +23,10 @@ const Order = () => {
     const lunch = menu?.filter(item => item.category === 'lunch');
     const dinner = menu?.filter(item => item.category === 'dinner');
 
+/// infine scrolling
+
+
+    
 
 
     
@@ -33,9 +37,9 @@ const Order = () => {
     return (
         <div>
             <Helmet>
-                <title>Bistro Boss | Order Food</title>
+                <title>Hostel Food | Order Food</title>
             </Helmet>
-            <Cover img={orderCoverImg} title="Order Food"></Cover>
+            <Cover img={orderCoverImg} title="Meals By Category"></Cover>
             <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
                     <Tab>All Meals</Tab>

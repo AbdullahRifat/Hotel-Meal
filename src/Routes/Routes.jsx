@@ -68,6 +68,11 @@ import AllMeals from "../pages/Order/Order/AllMeals";
         {
           path: 'secret',
           element: <PrivateRoute><Secret></Secret></PrivateRoute>
+        },
+        {
+          path: 'checkout/:type',
+          // element : <AddItems></AddItems>
+          element :  <Payment></Payment>
         }
       ]
     },

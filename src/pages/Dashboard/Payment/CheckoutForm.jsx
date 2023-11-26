@@ -6,7 +6,8 @@ import useCart from "../../../hooks/useCart";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({member}) => {
+   
     const stripe = useStripe();
     const elements = useElements();
     const {user}= useAuth()
@@ -17,7 +18,15 @@ const CheckoutForm = () => {
 
     const [cart,refetch] = useCart()
 
-    const totalPrice = cart.reduce((total,item)=>total+item.price,0)
+    let  totalPrice = 0.0
+
+    if(member!=null || member!==undefined) {
+      totalPrice = member.price
+    }else{
+      totalPrice = cart.reduce((total,item)=>total+item.price,0)
+    }
+
+    
 
 
     useEffect(()=>{
@@ -67,7 +76,8 @@ const CheckoutForm = () => {
                 card: card,
                 billing_details: {
                 email: user?.email || 'anonymous@anonymous.',
-                  name: user?.displayName || 'anonymous',
+                name: user?.displayName || 'anonymous',
+               
                   
                 },
               },
@@ -83,6 +93,7 @@ const CheckoutForm = () => {
 
                 const payment = {
                     email: user?.email,
+                    membership: member?.memberShipType? member.memberShipType: 'bronze',
                     price : totalPrice,
                     transactionId: paymentIntent.id,
                     data: new Date(),

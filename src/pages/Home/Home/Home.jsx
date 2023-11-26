@@ -1,10 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "../Banner/Banner";
-import Category from "../Category/Category";
-import Featured from "../Featured/Featured";
+
 import PopularMenu from "../PopularMenu/PopularMenu";
-import Testimonials from "../Testimonials/Testimonials";
+
 import Order from "../../Order/Order/Order";
+import MembershipCard from "../../../components/FoodCard/MembershipCard";
 
 const Home = () => {
     return (
@@ -17,6 +17,7 @@ const Home = () => {
             
             <PopularMenu></PopularMenu>
             <Order></Order>
+            <MembershipCard></MembershipCard>
             {/* <Featured></Featured> */}
             {/* <Testimonials></Testimonials> */}
         </div>
