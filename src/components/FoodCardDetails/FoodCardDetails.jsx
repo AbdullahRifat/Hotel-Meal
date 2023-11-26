@@ -12,6 +12,8 @@ import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import useReviews from '../../hooks/useReviews';
 import { FaRegHeart } from "react-icons/fa6";
+import useUsers from '../../hooks/useUsers';
+import useCart from '../../hooks/useCart';
 const FoodCardDetails = () => {
   const params = useParams();
   const { id } = params;
@@ -21,6 +23,8 @@ const FoodCardDetails = () => {
   const [error, setError] = useState(null);
   const axiosPublic = useAxiosPublic()
   const {user} = useAuth()
+  const [allUsers] = useUsers();
+  const [cart,cartrefetch=refetch] = useCart()
 
   const [allReviews, loading,refetch] = useReviews();
   const [isLiked,setLike] = useState(false)
@@ -154,7 +158,63 @@ const FoodCardDetails = () => {
       console.error('Error:', error);
     }
   };
+
   
+
+  
+  const handleRequestMeal = async () => {
+    
+    const userType = await allUsers.find(currentUser => currentUser.email.toLowerCase() == user?.email);
+    console.log(userType.subscription)
+    let userExists = cart.length > 0 ? cart.find(currentUser => currentUser.menuId === id) : null;
+
+    console.log("user exists", userExists);
+  
+    if (userExists) {
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Meal Already Requested',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+    if ( userType?.subscription!=='gold' && userType?.subscription!=='silver' &&
+    userType?.subscription!=='plutinum') {
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'You dont hold any packages yet',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+  
+    // If user doesn't exist in cart, allow them to request the meal
+    const response = await axiosPublic.post('/carts', {
+      menuId: id,
+      name: user?.displayName,
+      email: user?.email,
+      image: user?.displayURL,
+      price: price,
+      subscription: userType?.subscription,
+      mealStatus: 'pending',
+    });
+  
+    if (response.data.insertedId) {
+      cartrefetch()
+      console.log('inseted', )
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Meal Requested',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
   
   
   
@@ -176,8 +236,13 @@ const FoodCardDetails = () => {
           <span className='font-bold'> Distributor/Admin:</span>{distributorName} <br />
           <span className='font-bold'> Email:</span> {distributorEmail}<br />
           {user?<span className='font-bold text-3xl'><form onSubmit={handleLikeSubmit}>
-          <button type='submit'>{isLiked?<FaHeart></FaHeart>:<FaRegHeart></FaRegHeart>}</button>
+         <button type='submit'>{isLiked?<FaHeart></FaHeart>:<FaRegHeart></FaRegHeart>}</button>
             </form></span>:""}
+            {user?<span className='font-bold text-3xl'>
+
+                <button onClick={handleRequestMeal} className='btn btn-primary'> Request Meal</button>
+             
+            </span>:""}
         </p>
         {
           user?<div>
@@ -201,7 +266,7 @@ const FoodCardDetails = () => {
   
     <br />
     </p>
-    {/* <img src={review.mealImage} alt="" /> */}
+   { <img className='rounded-full w-12' src={review.mealImage} alt="" /> } 
     <p>
     {review.details}
     </p>

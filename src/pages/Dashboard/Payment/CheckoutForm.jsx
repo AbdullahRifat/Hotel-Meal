@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useUsers from "../../../hooks/useUsers";
 
 const CheckoutForm = ({member}) => {
    
@@ -15,7 +16,7 @@ const CheckoutForm = ({member}) => {
     const [errormsg,setError] = useState()
     const axiosSecure  = useAxiosSecure()
     const [clientSecret,setClientSecret] =useState('')
-
+    const [allUsers] = useUsers();
     const [cart,refetch] = useCart()
 
     let  totalPrice = 0.0
@@ -90,6 +91,30 @@ const CheckoutForm = ({member}) => {
             console.log('payment Intent',paymentIntent)
             if(paymentIntent.status === 'succeeded'){
                 setTransactionId(paymentIntent.id)
+                const currentUser = allUsers.find(user => user.email === user?.email);
+                if (currentUser) {
+                  const updatedSubscription = member?.memberShipType || 'bronze';
+                  const userUpdateData = { subscription: updatedSubscription };
+        
+                  try {
+                    const updateUserResponse = await axiosSecure.put(`/users/${currentUser._id}`, userUpdateData);
+        
+                    if (updateUserResponse.data) {
+                      Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Payment Successful',
+                        showConfirmButton: false,
+                        timer: 1500,
+                      });
+                    }
+                  } catch (error) {
+                    console.error('Error updating user membership:', error);
+                  }
+                } else {
+                  console.log('User not found in allUsers');
+                }
+
 
                 const payment = {
                     email: user?.email,
