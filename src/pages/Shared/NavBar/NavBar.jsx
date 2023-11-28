@@ -7,6 +7,7 @@ import useCart from "../../../hooks/useCart";
 import useAdmin from "../../../hooks/useAdmin";
 import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 
+
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [cart] = useCart();
@@ -19,7 +20,11 @@ const NavBar = () => {
     }
 
 
+   
 
+    
+
+ 
     //testing  nav links
     const navLinks = (
         <>
@@ -215,9 +220,10 @@ const NavBar = () => {
                 <div className="navbar-end">
                     {user ? (
                         <div className="dropdown dropdown-bottom dropdown-end flex items-center">
+                           
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div title={user?.displayName} className={`w-10 rounded-full hover:[${user?.displayName}]`}>
-
+                                                   
                                     {user?.photoURL ? (
                                         <img src={user?.photoURL} />
                                     ) : (

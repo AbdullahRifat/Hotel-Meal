@@ -95,6 +95,7 @@ const Allusers = () => {
                                 <th>Serial</th>
                                 <td>Name</td>
                                 <td>Email</td>
+                                <td>Subscription</td>
                                 <td>Role</td>
                                 <td>Action</td>
                             </tr>
@@ -107,12 +108,13 @@ const Allusers = () => {
                                 <th>{idx+1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td> {
+                                <td>{user.subscription}</td>
+                                <td > {
                                     
-                                    user.role==='admin'?<FaUser></FaUser>:
-                                    <button
+                                    user.role==='admin'?<button className="btn btn-ghost btn-lg " ><FaUser></FaUser></button>:
+                                    <button 
                                         onClick={() => handleMakeAdmin(user)}
-                                        className="btn btn-ghost btn-lg">
+                                        className="btn btn-ghost btn-lg ">
                                         <FaUsers className="text-red-600"></FaUsers>
                                     </button>
                                     

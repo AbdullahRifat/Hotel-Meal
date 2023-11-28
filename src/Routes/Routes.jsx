@@ -23,6 +23,10 @@ import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import FoodCardDetails from "../components/FoodCardDetails/FoodCardDetails";
 import AllMeals from "../pages/Order/Order/AllMeals";
 import UpComming from "../pages/Order/Order/UpComming";
+import MyReviews from "../pages/Dashboard/UserHome/MyReviews";
+import AllReviewsPagination from "../pages/Order/Order/AllReviewsPagination";
+import AllServeMealsPagination from "../pages/Order/Order/AllServeMealsPagination";
+import UpcomingMeals from "../pages/Order/Order/UpcomingMeals";
 
 
   export const router = createBrowserRouter([
@@ -131,7 +135,26 @@ import UpComming from "../pages/Order/Order/UpComming";
           path: 'paymentHistory',
           // element : <AddItems></AddItems>
           element :  <PayementHistory></PayementHistory>
+        },{
+          path: 'review',
+          element: <MyReviews></MyReviews>
+        },
+        {
+          path:'allreview',
+          element: <AllReviewsPagination></AllReviewsPagination>
+        },{
+          path:'allreview/mealDetails/:id',
+          element: <FoodCardDetails></FoodCardDetails>
+        },
+        {
+          path:'requestedMeals',
+          element: <AllServeMealsPagination></AllServeMealsPagination>
+        },
+        {
+          path:'upcoming',
+          element:<UpcomingMeals></UpcomingMeals>
         }
+
       ]
     }
   ]);

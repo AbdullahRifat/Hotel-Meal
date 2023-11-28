@@ -2,8 +2,9 @@ import { FaAd, FaCalendar, FaHome, FaList, FaSearch, FaShoppingCart, FaUser, FaU
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
-
-
+import { ImSpoonKnife } from "react-icons/im";
+import { CgProfile } from "react-icons/cg";
+import { FaPlateWheat } from "react-icons/fa6";
 const Dashboard = () => {
     const [cart] = useCart();
     const [isAdmin] = useAdmin();
@@ -17,51 +18,57 @@ const Dashboard = () => {
                         isAdmin ? <>
                         <li>
                         <NavLink to="/dashboard/adminHome">
-                            <FaHome></FaHome>
-                            Admin Home</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/additems">
-                            <FaCalendar></FaCalendar>
-                            Add Items</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/manageitems">
-                            <FaList></FaList>
-                            Manage Items</NavLink>
-                    </li>
-                  
-                    <li>
-                        <NavLink to="/dashboard/bookings">
-                            <FaAd></FaAd>
-                            Manage Bookings</NavLink>
+                            <FaUser></FaUser>
+                            Admin Profile</NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/users">
                             <FaUsers></FaUsers>
-                           All Users</NavLink>
+                          Manage User</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/additems">
+                            <FaCalendar></FaCalendar>
+                            Add Meals</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/manageitems">
+                        <ImSpoonKnife />
+                           All Meals</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/allreview">
+                            <FaAd></FaAd>
+                           All Reviews</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/requestedMeals">
+                            <FaAd></FaAd>
+                            Serve Meal</NavLink>
+                    </li>
+                   
+                    <li>
+                        <NavLink to="/dashboard/upcoming">
+                            <FaUsers></FaUsers>
+                          Upcoming Meals</NavLink>
                     </li>
 
                         </>: <>
-                        <li>
+                        <li className="text-bold">
                         <NavLink to="/dashboard/userHome">
-                            <FaHome></FaHome>
-                            User Home</NavLink>
+                          <CgProfile />
+                            My Profile</NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/dashboard/reservation">
-                            <FaCalendar></FaCalendar>
-                            Reservation</NavLink>
-                    </li>
+                    
                     <li>
                         <NavLink to="/dashboard/cart">
                             <FaShoppingCart></FaShoppingCart>
-                            My Cart ({cart.length})</NavLink>
+                           Requested Meal ({cart.length})</NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/review">
                             <FaAd></FaAd>
-                            Add a Review</NavLink>
+                           My Reviews</NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/bookings">

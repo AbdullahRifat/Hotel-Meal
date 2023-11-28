@@ -9,6 +9,9 @@ const useReviews = () => {
             const res = await axiosPublic.get('reviews')
             return res.data
         },
+        
+        staleTime: Infinity, // 1 hour in milliseconds
+          
        
     })
     return [allReviews, loading,refetch];

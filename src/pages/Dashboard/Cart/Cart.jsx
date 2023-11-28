@@ -40,8 +40,8 @@ const Cart = () => {
     return (
         <div>
             <div className="flex justify-evenly mb-8">
-                <h2 className="text-4xl">Items: {cart.length}</h2>
-                <h2 className="text-4xl">Total Price: {totalPrice}</h2>
+                <h2 className="text-2xl font-bold">Items: {cart.length}</h2>
+                <h2 className="text-2xl font-bold">Total Price: {totalPrice}</h2>
                 {
                     cart.length?<Link to='/dashboard/payment'><button className="btn btn-primary">Pay</button></Link>:
                     <button disabled className="btn btn-primary">Pay</button>
@@ -53,36 +53,32 @@ const Cart = () => {
             <div className="overflow-x-auto">
                 <table className="table  w-full">
                     {/* head */}
-                    <thead>
+                    <thead className="bg-red-500">
                         <tr>
                             <th>
-                                #
+                                SL
                             </th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Action</th>
+                        
+                            <th>Title</th>
+                            <th>Total Likes</th>
+                            <th>Total Reviews</th>
+                            <th>Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             cart.map((item, index) => <tr key={item._id}>
-                                <th>
-                                    {index + 1}
-                                </th>
                                 <td>
-                                    <div className="flex items-center gap-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src={item.image} alt="Avatar Tailwind CSS Component" />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {index + 1}
                                 </td>
+                               
                                 <td>
                                     {item.name}
                                 </td>
-                                <td>${item.price}</td>
+                                <td>${item?.likes}</td>
+                                <td>
+                                    {item?.reviews}
+                                </td>
                                 <th>
                                     <button
                                         onClick={() => handleDelete(item._id)}

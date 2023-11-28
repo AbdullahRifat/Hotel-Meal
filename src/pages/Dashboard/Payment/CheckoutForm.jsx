@@ -91,7 +91,7 @@ const CheckoutForm = ({member}) => {
             console.log('payment Intent',paymentIntent)
             if(paymentIntent.status === 'succeeded'){
                 setTransactionId(paymentIntent.id)
-                const currentUser = allUsers.find(user => user.email === user?.email);
+                const currentUser = allUsers.find(use => use.email === user?.email);
                 if (currentUser) {
                   const updatedSubscription = member?.memberShipType || 'bronze';
                   const userUpdateData = { subscription: updatedSubscription };
