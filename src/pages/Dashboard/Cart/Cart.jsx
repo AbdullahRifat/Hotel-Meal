@@ -62,6 +62,7 @@ const Cart = () => {
                             <th>Title</th>
                             <th>Total Likes</th>
                             <th>Total Reviews</th>
+                            <th>Status</th>
                             <th>Cancel</th>
                         </tr>
                     </thead>
@@ -79,6 +80,7 @@ const Cart = () => {
                                 <td>
                                     {item?.reviews}
                                 </td>
+                                <td>{item.mealStatus==='served'?'deilvered':item.mealStatus}</td>
                                 <th>
                                     <button
                                         onClick={() => handleDelete(item._id)}

@@ -1,35 +1,193 @@
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/useCart";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import LoaderAnimations from "../../pages/Shared/Loader/LoaderAnmations";
 
 
-const FoodCard2 = () => {
+const FoodCard2 = ({ item }) => {
+    const { title, image, price, ingredients, _id } = item;
+    const { user } = useAuth();
+ 
+    const [foodDetails, setFoodDetails] = useState({});
+    const[isLiked,setLike] =useState(true);
+    const axiosPublic = useAxiosPublic();
+
+    const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+    useEffect(() => {
+
+
+        const fetchData = async () => {
+          try {
+            const response = await axiosPublic.get(`/menu/${_id}`); // Adjust the URL as per your server endpoint
+            setFoodDetails(response.data);
+    
+            const userContainsInLikes = await foodDetails.likesBy && foodDetails.likesBy.includes(user?.email);
+            setLike(userContainsInLikes);
+            setIsLoading(false);
+          } catch (error) {
+            setError(error);
+            setIsLoading(false);
+          }
+        };
+    
+        fetchData();
+      }, [_id, user?.email]);
+
+      
+
+
+
+      if (isLoading) {
+        return <LoaderAnimations></LoaderAnimations>
+      }
+    
+      if (error) {
+        return <div>Error: {error.message}</div>;
+      }
+        
+      
+
+      const handleLikeSubmit = async (event) => {
+        event.preventDefault();
+    
+        const userContainsInLikes =  foodDetails.likesBy && foodDetails.likesBy.includes(user?.email);
+        
+        
+        if (userContainsInLikes) {
+          
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Already Liked!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          return;
+        }
+    
+        const updatedLikesBy = foodDetails.likesBy ? [...foodDetails.likesBy, user?.email] : [user?.email];
+       
+    
+        try {
+          const response = await axiosPublic.put(`/menu/likes/${_id}`, {
+            likes: foodDetails.likes + 1,
+            email: user?.email,
+            likesBy: updatedLikesBy,
+          });
+    
+          if (response.data.modifiedCount) {
+            setFoodDetails((prevFoodDetails) => ({
+              ...prevFoodDetails,
+              likes: prevFoodDetails.likes + 1,
+              likesBy: updatedLikesBy,
+            }));
+            setLike(true);
+    
+            Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'Liked!',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          } else {
+            console.error('Failed to update likes');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+
+
+
+
     return (
-        <div className="meal-delivery-services" style={{ border: '10px solid #ccc', padding: '20px' }}>
-          <img src="https://i.imgur.com/example.jpg" alt="Healthline's picks for the best prepared meal delivery services" />
-          <h1 style={{ color: '#333', fontSize: '24px', fontWeight: 'bold' }}>Healthline's picks for the best prepared meal delivery services</h1>
-    
-          <div className="best-overall" style={{ border: '5px solid #eee', padding: '10px' }}>
-            <h2 style={{ color: '#000', fontSize: '20px', fontWeight: 'bold' }}>Best overall prepared meal delivery service</h2>
-            <h3>Factor</h3>
-            <img src="https://i.imgur.com/factor-logo.jpg" alt="Factor logo" />
-            <p style={{ color: '#666', fontSize: '16px' }}>Price per serving: $10.99-$13.49</p>
-            <p style={{ color: '#666', fontSize: '16px' }}>Menus: Chef's Choice, Keto, Calorie Smart, Vegan & Veggie, Protein Plus, Flexitarian</p>
-            <p style={{ color: '#666', fontSize: '16px' }}>Shipping: $10.99</p>
-            <a href="https://factormeals.com/" className="btn" style={{ backgroundColor: '#007bff', color: '#fff', padding: '10px', borderRadius: '5px' }}>GET STARTED WITH FACTOR</a>
-          </div>
-    
-          <div className="healthline-review" style={{ border: '5px solid #eee', padding: '10px' }}>
-            <h2 style={{ color: '#000', fontSize: '20px', fontWeight: 'bold' }}>Healthline's review</h2>
-            <p style={{ color: '#666', fontSize: '16px' }}>Healthline Score: 4.3/5</p>
-            <p style={{ color: '#666', fontSize: '16px' }}>Our overall score is based on a variety of criteria, including:</p>
-            <ul>
-              <li>Variety of meal options</li>
-              <li>Nutrition and health quality</li>
-              <li>Taste and satisfaction</li>
-              <li>Convenience and delivery</li>
-              <li>Customer service</li>
-            </ul>
-          </div>
+        <div className="card w-[300px] bg-base-100 shadow-xl">
+            <figure><img className="w-full h-36" src={image} alt="missing photo" /></figure>
+            
+            <div className="card-body flex flex-col items-center">
+                <h2 className="card-title flex-grow">{title}</h2>
+                <p className=""><span className="font-bold">Price : </span>${price}</p>
+                <p ><span className="font-bold">Ingredients : </span>{ ingredients}</p>
+                <div className="card-actions items-center">
+                    <Link to={{
+                        pathname: `mealdetails/${_id}`,
+                        state: { item }, // Pass the meal object as state
+                    }}
+
+
+                    >
+                        <button
+                            // onClick={handleAddToCart}
+                            className="btn btn-outline bg-slate-100 border-0 border-b-4 border-primary-400 mt-4"
+                        >Details</button>
+                        
+                    </Link>
+                    {user ? <span className='font-bold text-3xl'><form onSubmit={handleLikeSubmit}>
+                <button type='submit'><FaHeart></FaHeart> </button>
+              </form></span> : ""}
+                </div>
+            </div>
         </div>
-      );
+    );
 };
 
 export default FoodCard2;
+
+
+// const [foodDetails, setFoodDetails] = useState({});
+// const handleLikeSubmit = async (event) => {
+//     event.preventDefault();
+
+//     const userContainsInLikes = foodDetails.likesBy && foodDetails.likesBy.includes(user?.email);
+
+//     if (userContainsInLikes) {
+
+//       Swal.fire({
+//         position: 'top-center',
+//         icon: 'success',
+//         title: 'Already Liked!',
+//         showConfirmButton: false,
+//         timer: 1500,
+//       });
+//       return;
+//     }
+
+//     const updatedLikesBy = foodDetails.likesBy ? [...foodDetails.likesBy, user?.email] : [user?.email];
+
+//     try {
+//       const response = await axiosPublic.put(`/menu/likes/${id}`, {
+//         likes: foodDetails.likes + 1,
+//         email: user?.email,
+//         likesBy: updatedLikesBy,
+//       });
+
+//       if (response.data.modifiedCount) {
+//         setFoodDetails((prevFoodDetails) => ({
+//           ...prevFoodDetails,
+//           likes: prevFoodDetails.likes + 1,
+//           likesBy: updatedLikesBy,
+//         }));
+//         setLike(true);
+
+//         Swal.fire({
+//           position: 'top-center',
+//           icon: 'success',
+//           title: 'Liked!',
+//           showConfirmButton: false,
+//           timer: 1500,
+//         });
+//       } else {
+//         console.error('Failed to update likes');
+//       }
+//     } catch (error) {
+//       console.error('Error:', error);
+//     }
+//   };

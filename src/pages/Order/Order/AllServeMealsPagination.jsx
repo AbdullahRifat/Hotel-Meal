@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AllServeMealsPagination = () => {
     const axiosPublic = useAxiosPublic();
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 1; // Adjust as needed
+    const itemsPerPage = 10; // Adjust as needed
 
     const { data: requestedMeals = [], isLoading: loading, refetch } = useQuery({
         queryKey: ["requestedMeals"],
@@ -67,6 +68,9 @@ const AllServeMealsPagination = () => {
 
     return (
         <div>
+             <Helmet>
+                <title>Hotel Meal | Serve</title>
+            </Helmet>
             <table className="table w-full">
                 <thead>
                     <tr>

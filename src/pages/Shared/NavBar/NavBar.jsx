@@ -7,7 +7,7 @@ import useCart from "../../../hooks/useCart";
 import useAdmin from "../../../hooks/useAdmin";
 import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 
-
+import logo from '../../../assets/logo.jpg'
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [cart] = useCart();
@@ -204,8 +204,8 @@ const NavBar = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <div>
-                        Hotel
+                    <div className="flex gap-2 justify-center items-center">
+                        Hotel Meal <img className="w-8 h-8 rounded-full" src={logo} alt="" />
                     </div>
                     <Link to={"/"}>
                         <div title={user?.displayName} className="flex items-center ">

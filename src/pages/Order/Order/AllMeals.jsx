@@ -108,6 +108,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import LoaderAnimations from '../../Shared/Loader/LoaderAnmations';
 import { NavLink } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const AllMeals = () => {
   const axiosPublic = useAxiosPublic();
@@ -115,7 +116,7 @@ const AllMeals = () => {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
-  const perWindow = 6;
+  const perWindow = 3;
 
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [priceRange, setPriceRange] = useState('All');
@@ -229,7 +230,9 @@ const AllMeals = () => {
 
   return (
     <div>
-        
+         <Helmet>
+                <title>Hotel Meal | All Meals</title>
+            </Helmet>
       {/* Dropdowns for filtering */}
       <div className='flex justify-center my-4 gap-8'>
       <div className='text-center w-48'>
@@ -280,12 +283,12 @@ const AllMeals = () => {
       </div>
 
       {/* Display filtered items */}
-      <div className='grid my-24 md:grid-cols-2 lg:grid-cols-3'>
+      <div className='grid my-24 md:grid-cols-2 gap-12 justify-center items-center lg:grid-cols-3'>
         {displayedItems.map((menuItem, idx) => (
           <div className='meal' key={idx}>
-            <div className='card w-96 bg-base-100 shadow-xl'>
+            <div className='card w-72 bg-base-100 shadow-xl'>
               <figure>
-                <img src={menuItem?.image} alt='Shoes' />
+                <img className='w-full h-32' src={menuItem?.image} alt='Shoes' />
               </figure>
               <p className='absolute right-0 mr-4 mt-4 px-4 bg-slate-900 text-white'>
                 ${menuItem?.price}

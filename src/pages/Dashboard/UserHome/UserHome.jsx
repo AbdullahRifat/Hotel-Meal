@@ -8,6 +8,7 @@ import bronze from "../../../assets/home/bronze.jpg"
 import LoaderAnimations from "../../Shared/Loader/LoaderAnmations";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const UserHome = () => {
     const { user } = useAuth();
@@ -46,6 +47,9 @@ const UserHome = () => {
 
     return (
         <div>
+             <Helmet>
+                <title>Hotel Meal |User Home</title>
+            </Helmet>
           <div className="flex justify-center items-center">
           <h1 className="text-3xl font-bold"> 
                 <span>Hi, Welcome {user?.displayName ? user.displayName : 'Back'}</span>
@@ -53,7 +57,7 @@ const UserHome = () => {
             {badge && <img className="w-20 " src={badge} alt="User Badge" />} {/* Display badge if available */}
           </div>
           <div className="font-bold">
-          <img className=" border-solid border-2 border-sky-500 w-24 h-24 " src={user?.displayURL} alt="" />
+          <img className=" border-solid border-2 border-sky-500 w-24 h-24 " src={user?.photoURL} alt="" />
              <p>Name: {user?.displayName}</p>
              <p>Email: {user?.email}</p>
              

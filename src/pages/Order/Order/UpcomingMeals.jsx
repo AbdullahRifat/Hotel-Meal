@@ -4,6 +4,7 @@ import useMenu from "../../../hooks/useMenu";
 import Swal from "sweetalert2";
 import LoaderAnimations from "../../Shared/Loader/LoaderAnmations";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const UpcomingMeals = () => {
     const [menu, loading, refetch] = useMenu();
@@ -83,6 +84,9 @@ const UpcomingMeals = () => {
 
     return (
         <div>
+             <Helmet>
+                <title>Hotel Meal | Upcoming</title>
+            </Helmet>
             {loading ? (
                 <LoaderAnimations />
             ) : (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import LoaderAnimations from '../../pages/Shared/Loader/LoaderAnmations';
@@ -30,6 +30,9 @@ const FoodCardDetails = () => {
   
   const [isReviewLoading,setReviewLoading] = useState(true)
   const [allReviews, setAllReviews] = useState([]);
+
+console.log("first")
+
 
 useEffect(() => {
   axiosPublic.get('/reviews')
@@ -101,6 +104,7 @@ useEffect(() => {
         mealImage: user?.photoURL, // Replace with actual user data
         rating: 5, // Replace with actual rating
         details: reviewText,
+       
       });
 
       if (response.data.insertedId) {

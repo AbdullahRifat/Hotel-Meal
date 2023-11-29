@@ -1,8 +1,8 @@
 [
     {
-      "title": "Grilled Salmon with Roasted Vegetables",
+      "title": "Eggs and Cheeses",
       "category": "dinner",
-      "image": "https://picsum.photos/200/300?image=100",
+      "image": "https://littlesunnykitchen.com/wp-content/uploads/2023/03/Scrambled-Eggs-with-Cottage-Cheese-1-730x1095.jpg",
       "ingredients": ["Salmon fillet", "Broccoli florets", "Carrot sticks", "Zucchini slices", "Olive oil", "Salt", "Pepper"],
       "description": "A delicious and nutritious meal featuring grilled salmon with roasted vegetables. Perfect for a healthy and satisfying dinner.",
       "price": 19.99,
@@ -17,7 +17,7 @@
     {
       "title": "Creamy Chicken Pasta",
       "category": "lunch",
-      "image": "https://picsum.photos/200/300?image=101",
+      "image": "https://i2.wp.com/bakingmischief.com/wp-content/uploads/2016/01/easy-creamy-chicken-pasta-with-bell-peppers-image.jpg",
       "ingredients": ["Chicken breast", "Pasta", "Cream sauce", "Parmesan cheese", "Salt", "Pepper"],
       "description": "A comforting and flavorful pasta dish with tender chicken and a creamy sauce.",
       "price": 14.99,
@@ -30,9 +30,9 @@
       "upcoming": false
     },
     {
-      "title": "Tropical Fruit Smoothie Bowl",
+      "title": "Parata",
       "category": "breakfast",
-      "image": "https://picsum.photos/200/300?image=102",
+      "image": "https://haffaskitchen.blogspot.com/2013/11/square-paratha-chapati.html",
       "ingredients": ["Mango", "Pineapple", "Banana", "Yogurt", "Granola", "Chia seeds"],
       "description": "A refreshing and energizing smoothie bowl packed with tropical fruits and healthy toppings.",
       "price": 9.99,
@@ -45,9 +45,9 @@
       "upcoming": false
     },
     {
-      "title": "Black Bean Burgers with Guacamole",
+      "title": "Chicken",
       "category": "dinner",
-      "image": "https://picsum.photos/200/300?image=103",
+      "image": "https://lh5.ggpht.com/-Fl4mRRiwcv8/T0GBNZri9PI/AAAAAAAABNw/0Qy9FFAsq4g/s1600-h/IMG_0701-Edit%25255B5%25255D.jpg",
       "ingredients": ["Black beans", "Rice", "Onion", "Bell pepper", "Spices", "Guacamole"],
       "description": "A hearty and flavorful vegetarian burger option served with a fresh and creamy guacamole.",
       "price": 12.99,
@@ -60,9 +60,9 @@
       "upcoming": false
     },
     {
-      "title": "Chicken Caesar Salad with Homemade Dressing",
+      "title": "Fried Rice",
       "category": "lunch",
-      "image": "https://picsum.photos/200/300?image=104",
+      "image": "https://www.kitchensanctuary.com/wp-content/uploads/2020/04/Chicken-Fried-Rice-tall-FS-6.webp",
       "ingredients": ["Grilled chicken", "Romaine lettuce", "Parmesan cheese", "Croutons", "Caesar dressing"],
       "description": "A classic salad with a flavorful homemade Caesar dressing.",
       "price": 11.99,
@@ -75,9 +75,9 @@
       ,
       "upcoming": false },
       {
-    "title": "Thai Coconut Curry with Tofu",
+    "title": "Beef Stake",
     "category": "dinner",
-    "image": "https://picsum.photos/200/300?image=105",
+    "image": "https://keviniscooking.com/wp-content/uploads/2021/05/Bavette-Steak-Sirloin-Flap-square-1000x1000.jpg",
     "ingredients": ["Tofu", "Coconut milk", "Vegetables", "Curry paste", "Rice"],
     "description": "A flavorful and fragrant Thai curry with tofu and vegetables, served with fluffy rice.",
     "price": 16.99,
@@ -90,9 +90,9 @@
     "upcoming": false
   },
   {
-    "title": "Mediterranean Salmon with Roasted Vegetables",
-    "category": "dinner",
-    "image": "https://picsum.photos/200/300?image=106",
+    "title": "Mutton",
+    "category": "lunch",
+    "image": "https://www.krumpli.co.uk/wp-content/uploads/2020/12/Achar-Gosht-Lamb-or-Mutton-Curry-4-720x960.jpg.webp",
     "ingredients": ["Salmon fillet", "Vegetables", "Hummus", "Pita bread", "Olive oil", "Spices"],
     "description": "A Mediterranean-inspired dish featuring grilled salmon with roasted vegetables, served with hummus and pita bread.",
     "price": 18.99,
@@ -105,9 +105,9 @@
     "upcoming": false
   },
   {
-    "title": "Quinoa Power Bowl with Avocado and Egg",
+    "title": "Parata and Egg",
     "category": "breakfast",
-    "image": "https://picsum.photos/200/300?image=107",
+    "image": "https://1.bp.blogspot.com/-mIoubYgDnoM/W32uG2RU7BI/AAAAAAAALsk/b7fjn9jH4jcXKBbZN9u_1S0Z0Ok1qViagCEwYBhgL/s1600/Ceylon%2BEgg%2BParatha.JPG",
     "ingredients": ["Quinoa", "Vegetables", "Avocado", "Egg", "Dressing"],
     "description": "A protein-packed and nutritious quinoa power bowl topped with avocado, a fried egg, and a flavorful dressing.",
     "price": 13.99,
@@ -120,84 +120,9 @@
     "upcoming": false
   },
   {
-    "title": "Turkey Meatballs with Spaghetti Squash",
-    "category": "dinner",
-    "image": "https://picsum.photos/200/300?image=108",
-    "ingredients": ["Ground turkey", "Spaghetti squash", "Marinara sauce", "Cheese"],
-    "description": "A comforting and low-carb twist on classic spaghetti and meatballs, using spaghetti squash instead of traditional pasta.",
-    "price": 15.99,
-    "rating": 0,
-    "dateTime": "2023-11-24T12:00:00.000Z",
-    "likes": 0,
-    "reviews": 0,
-    "distributorName": "Healthy Comfort Food",
-    "distributorEmail": "healthycomfortfood@example.com",
-    "upcoming": false
-  },
-  {
-    "title": "Crispy Chickpea Wraps with Hummus and Veggies",
-    "category": "lunch",
-    "image": "https://picsum.photos/200/300?image=109",
-    "ingredients": ["Crispy chickpeas", "Hummus", "Vegetables", "Tortillas"],
-    "description": "A flavorful and portable lunch option featuring crispy chickpeas, hummus, and fresh vegetables wrapped in tortillas.",
-    "price": 10.99,
-    "rating": 0,
-    "dateTime": "2023-11-24T12:00:00.000Z",
-    "likes": 0,
-    "reviews": 0,
-    "distributorName": "Fresh and Fit",
-    "distributorEmail": "freshandfit@example.com",
-    "upcoming": false
-  },
-  {
-    "title": "Thai Coconut Curry with Tofu",
-    "category": "dinner",
-    "image": "https://picsum.photos/200/300?image=105",
-    "ingredients": ["Tofu", "Coconut milk", "Vegetables", "Curry paste", "Rice"],
-    "description": "A flavorful and fragrant Thai curry with tofu and vegetables, served with fluffy rice.",
-    "price": 16.99,
-    "rating": 0,
-    "dateTime": "2023-11-24T12:00:00.000Z",
-    "likes": 0,
-    "reviews": 0,
-    "distributorName": "Asian Eats",
-    "distributorEmail": "asianeats@example.com",
-    "upcoming": false
-  },
-  {
-    "title": "Mediterranean Salmon with Roasted Vegetables",
-    "category": "dinner",
-    "image": "https://picsum.photos/200/300?image=106",
-    "ingredients": ["Salmon fillet", "Vegetables", "Hummus", "Pita bread", "Olive oil", "Spices"],
-    "description": "A Mediterranean-inspired dish featuring grilled salmon with roasted vegetables, served with hummus and pita bread.",
-    "price": 18.99,
-    "rating": 0,
-    "dateTime": "2023-11-24T12:00:00.000Z",
-    "likes": 0,
-    "reviews": 0,
-    "distributorName": "Flavorful Fare",
-    "distributorEmail": "flavorfulfare@example.com",
-    "upcoming": false
-  },
-  {
-    "title": "Quinoa Power Bowl with Avocado and Egg",
+    "title": "Butter Bun",
     "category": "breakfast",
-    "image": "https://picsum.photos/200/300?image=107",
-    "ingredients": ["Quinoa", "Vegetables", "Avocado", "Egg", "Dressing"],
-    "description": "A protein-packed and nutritious quinoa power bowl topped with avocado, a fried egg, and a flavorful dressing.",
-    "price": 13.99,
-    "rating": 0,
-    "dateTime": "2023-11-24T12:00:00.000Z",
-    "likes": 0,
-    "reviews": 0,
-    "distributorName": "Fuel for the Day",
-    "distributorEmail": "fuelfortheday@example.com",
-    "upcoming": false
-  },
-  {
-    "title": "Turkey Meatballs with Spaghetti Squash",
-    "category": "dinner",
-    "image": "https://picsum.photos/200/300?image=108",
+    "image": "https://www.justonecookbook.com/wp-content/uploads/2022/05/Japanese-Milk-Bread-Shokupan-II.jpg",
     "ingredients": ["Ground turkey", "Spaghetti squash", "Marinara sauce", "Cheese"],
     "description": "A comforting and low-carb twist on classic spaghetti and meatballs, using spaghetti squash instead of traditional pasta.",
     "price": 15.99,
@@ -210,9 +135,9 @@
     "upcoming": false
   },
   {
-    "title": "Crispy Chickpea Wraps with Hummus and Veggies",
+    "title": "Biriayni",
     "category": "lunch",
-    "image": "https://picsum.photos/200/300?image=109",
+    "image": "https://www.sashisspices.com/cdn/shop/products/Biryani2-1-1-2048-Square_1024x1024@2x.jpg?v=1663238421",
     "ingredients": ["Crispy chickpeas", "Hummus", "Vegetables", "Tortillas"],
     "description": "A flavorful and portable lunch option featuring crispy chickpeas, hummus, and fresh vegetables wrapped in tortillas.",
     "price": 10.99,
@@ -223,6 +148,8 @@
     "distributorName": "Fresh and Fit",
     "distributorEmail": "freshandfit@example.com",
     "upcoming": false
-    
-}
+  }
+  
+  
+ 
 ]	

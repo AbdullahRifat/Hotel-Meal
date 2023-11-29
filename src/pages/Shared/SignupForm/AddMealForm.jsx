@@ -31,7 +31,7 @@ const AddMealForm = () => {
         ingredients: data.ingredients,
         description: data.description,
         price: parseFloat(data.price),
-        rating: 0,
+        rating: parseInt(data.rating),
         postTime: data.date,
         likes: 0,
         reviews: 0,
@@ -85,6 +85,26 @@ const AddMealForm = () => {
             <option value="Breakfast">Breakfast</option>
             <option value="Lunch">Lunch</option>
             <option value="Dinner">Dinner</option>
+          </select>
+        </div>
+        <div>
+          <label className="label">
+            <span className="label-text">Rating*</span>
+          </label>
+          <select
+            defaultValue="null"
+            {...register("rating", { required: true })}
+            className="select select-bordered w-full"
+          >
+            <option disabled value="null">
+              Rating
+            </option>
+            <option value='1'>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value='4'>4</option>
+            <option value="5">5</option>
+            
           </select>
         </div>
 

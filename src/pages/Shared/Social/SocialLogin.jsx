@@ -36,7 +36,7 @@ const SocialLogin = () => {
     }
     return (
         <div>
-            <button onClick={handleLogin} className="btn glass bg-primary-500"><FaGoogle className="text-green"></FaGoogle><span className="ml-2">login</span></button>
+            <button onClick={handleLogin} className="btn  bg-primary-500"><FaGoogle className="text-green"></FaGoogle><span className="ml-2">login</span></button>
         </div>
     );
 };

@@ -27,6 +27,7 @@ import MyReviews from "../pages/Dashboard/UserHome/MyReviews";
 import AllReviewsPagination from "../pages/Order/Order/AllReviewsPagination";
 import AllServeMealsPagination from "../pages/Order/Order/AllServeMealsPagination";
 import UpcomingMeals from "../pages/Order/Order/UpcomingMeals";
+import Review from "../components/FoodCard/Review";
 
 
   export const router = createBrowserRouter([
@@ -124,7 +125,7 @@ import UpcomingMeals from "../pages/Order/Order/UpcomingMeals";
         {
           path:'updateItem/:id',
           element :  <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
-          loader : ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
+          loader : ({params}) => fetch(`https://hotel-meal.vercel.app/menu/${params.id}`)
         },
         {
           path: 'payment',
@@ -141,7 +142,7 @@ import UpcomingMeals from "../pages/Order/Order/UpcomingMeals";
         },
         {
           path:'allreview',
-          element: <AllReviewsPagination></AllReviewsPagination>
+          element: <AdminRoute><AllReviewsPagination></AllReviewsPagination></AdminRoute>
         },{
           path:'allreview/mealDetails/:id',
           element: <FoodCardDetails></FoodCardDetails>
@@ -153,6 +154,15 @@ import UpcomingMeals from "../pages/Order/Order/UpcomingMeals";
         {
           path:'upcoming',
           element:<UpcomingMeals></UpcomingMeals>
+        },{
+          path:'review/mealDetails/:id',
+          element: <FoodCardDetails></FoodCardDetails>
+
+        },
+        {
+          path:'review/mealDetails/edit/:id',
+          element: <Review/>
+
         }
 
       ]
