@@ -6,11 +6,11 @@ const useReviews = () => {
 
         queryKeys: ['allReviews'],
         queryFn: async()=> {
-            const res = await axiosPublic.get('reviews')
+            const res = await axiosPublic.get('/reviews/allreviews')
             return res.data
         },
         
-        staleTime: Infinity, // 1 hour in milliseconds
+       // 1 hour in milliseconds
           
        
     })

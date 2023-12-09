@@ -39,6 +39,14 @@ const Login = () => {
                     }
                 });
                 navigate(from, { replace: true });
+            }).catch((error)=>{
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'error',
+                    title: error.message,
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
             })
     }
 
@@ -76,8 +84,8 @@ const Login = () => {
                                 <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
                             </div>
                         </form>
-                        <p><small>New Here? <Link to="/signup">Create an account</Link> </small></p>
-                        <SocialLogin></SocialLogin>
+                        <p className="text-center"><small>New to this site!!!!!<span className="text-primary"> <Link to="/signup">Signup</Link></span></small></p>
+                        <div className="my-4 mx-auto"><SocialLogin></SocialLogin></div>
                     </div>
                 </div>
             </div>

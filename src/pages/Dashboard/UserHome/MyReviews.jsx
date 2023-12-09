@@ -10,6 +10,7 @@ const MyReviews = () => {
     const itemsPerPage = 10; // Adjust this number as needed
 
     const { user } = useAuth();
+    
 
     const {
         data: allReviews = [],

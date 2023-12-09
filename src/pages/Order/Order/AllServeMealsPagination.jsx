@@ -28,9 +28,11 @@ const AllServeMealsPagination = () => {
             });
             return;
         }
+        
         const res = await axiosPublic.put(`/carts/requestedMeals/serve/${mealId}`, {
             mealStatus: "served",
         });
+        
         if (res.data.modifiedCount) {
             Swal.fire({
                 position: "top-center",

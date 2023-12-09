@@ -15,6 +15,8 @@ import { FaRegHeart } from "react-icons/fa6";
 import useUsers from '../../hooks/useUsers';
 import useCart from '../../hooks/useCart';
 import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+
 const FoodCardDetails = () => {
   const params = useParams();
   const { id } = params;
@@ -27,28 +29,28 @@ const FoodCardDetails = () => {
   const [allUsers, userLoading = loading, userRefetch = refetch] = useUsers()
   const [cart, cartrefetch = refetch] = useCart()
   const [isLiked, setLike] = useState(false);
-  
-  const [isReviewLoading,setReviewLoading] = useState(true)
+
+  const [isReviewLoading, setReviewLoading] = useState(true)
   const [allReviews, setAllReviews] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
-console.log("first")
 
+  console.log("first")
 
-useEffect(() => {
-  axiosPublic.get('/reviews')
-    .then(response => {
-      const reviewsData = response.data;
-      setAllReviews(reviewsData);
-      setReviewLoading(true)
-    })
-    .catch(error => {
-      console.error('Error fetching reviews:', error);
-    });
-}, [allReviews])
 
   useEffect(() => {
+    axiosPublic.get('/reviews')
+      .then(response => {
+        const reviewsData = response.data;
+        setAllReviews(reviewsData);
+        setReviewLoading(true)
+      })
+      .catch(error => {
+        console.error('Error fetching reviews:', error);
+      });
+  }, [])
 
-
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axiosPublic.get(`/menu/${id}`); // Adjust the URL as per your server endpoint
@@ -97,33 +99,32 @@ useEffect(() => {
     const reviewText = event.target.elements.reviewText.value;
 
     try {
-      const response = await axiosPublic.post(`/reviews`, {
+      const response = await axiosSecure.post(`/reviews/post`, {
         menuId: id,
         name: user?.displayName, // Replace with actual user data
         email: user?.email,
         mealImage: user?.photoURL, // Replace with actual user data
         rating: 5, // Replace with actual rating
         details: reviewText,
-       
+
       });
 
       if (response.data.insertedId) {
         const updatedReviews = foodDetails.reviews + 1;
-        
-      const menuUpdateResponse = await axiosPublic.put(`/menu/reviews/${id}`, {
-        reviews: updatedReviews,
-      });
-      if(menuUpdateResponse.status===200)
-       {
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "Review Submited",
-          showConfirmButton: false,
-          timer: 1500
+
+        const menuUpdateResponse = await axiosSecure.put(`/menu/reviews/${id}`, {
+          reviews: updatedReviews,
         });
-       }
-      
+        if (menuUpdateResponse.status === 200) {
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Review Submited",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+
         console.log('Review posted successfully!');
         // Perform further actions upon successful review submission if needed
       } else {
@@ -142,7 +143,6 @@ useEffect(() => {
     const userContainsInLikes = foodDetails.likesBy && foodDetails.likesBy.includes(user?.email);
 
     if (userContainsInLikes) {
-
       Swal.fire({
         position: 'top-center',
         icon: 'success',
@@ -153,10 +153,12 @@ useEffect(() => {
       return;
     }
 
+    []
+
     const updatedLikesBy = foodDetails.likesBy ? [...foodDetails.likesBy, user?.email] : [user?.email];
 
     try {
-      const response = await axiosPublic.put(`/menu/likes/${id}`, {
+      const response = await axiosSecure.put(`/menu/likes/${id}`, {
         likes: foodDetails.likes + 1,
         email: user?.email,
         likesBy: updatedLikesBy,
@@ -191,7 +193,7 @@ useEffect(() => {
   const handleRequestMeal = async () => {
 
     const userType = allUsers.find(currentUser => currentUser.email === user?.email);
-    console.log(userType.subscription)
+    console.log(allUsers)
 
     if (userType?.subscription !== 'gold' && userType?.subscription !== 'silver' &&
       userType?.subscription !== 'plutinum') {
@@ -207,7 +209,7 @@ useEffect(() => {
 
     // If user doesn't exist in cart, allow them to request the meal
     const response = await axiosPublic.post('/carts', {
-      title:title,
+      title: title,
       menuId: id,
       name: user?.displayName,
       email: user?.email,
@@ -217,7 +219,7 @@ useEffect(() => {
       reviews: reviews,
       subscription: userType?.subscription,
       distributorEmail: distributorEmail,
-      distributorName : distributorName,
+      distributorName: distributorName,
       mealStatus: 'pending',
     });
 
@@ -277,28 +279,31 @@ useEffect(() => {
               </div> : ""
             }
           </div>
-        
+
 
 
         </div>
       }
-        <div>
-            <SectionTitle heading={"All Reviews"}></SectionTitle>
-            {!isReviewLoading?<LoaderAnimations></LoaderAnimations>:allReviews.map((review, index) => (
-              <div className='text-start font-bold gap-y-3' key={index}>
-               
-                <p><span>{review.name} </span>
+      <div>
+        <SectionTitle heading={"All Reviews"}></SectionTitle>
+        {!isReviewLoading ? <LoaderAnimations></LoaderAnimations> : allReviews.map((review, index) => (
+          <div className='text-start font-bold gap-y-3 w-full border-solid border-sky-300 border-2 rounded-xl my-4' key={index}>
 
-                  <br />
-                </p>
-                {<img className='rounded-full w-12' src={review.mealImage} alt="" />}
-                <p>
-                  {review.details}
-                </p>
-                {}
-              </div>
-            )) }
+            <div className='flex items-center gap-2'>
+            {<img className='rounded-full w-12 h-12' src={review.mealImage} alt="" />}
+              <p><span>{review.name} </span>
+
+                <br />
+              </p>
+              
+            </div>
+            <p>
+             <span className='font-bold text-2xl'>Review:</span> {review.details}
+            </p>
+            { }
           </div>
+        ))}
+      </div>
 
     </div>
   );

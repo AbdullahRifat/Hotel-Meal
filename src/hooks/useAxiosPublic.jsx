@@ -1,8 +1,9 @@
 import axios from "axios";
+//https://hotel-meal.vercel.app
 
 const axiosPublic = axios.create(
     {
-        baseURL: 'https://job-seeking-server.vercel.app'
+        baseURL: 'https://hotel-meal.vercel.app'
     }
 );
 

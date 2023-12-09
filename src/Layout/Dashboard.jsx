@@ -70,16 +70,7 @@ const Dashboard = () => {
                             <FaAd></FaAd>
                            My Reviews</NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/dashboard/bookings">
-                            <FaList></FaList>
-                            My Bookings</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/paymentHistory">
-                            <FaList></FaList>
-                            Payement History</NavLink>
-                    </li>
+                  
 
                         
                         

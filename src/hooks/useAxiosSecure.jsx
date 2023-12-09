@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
-
+// https://hotel-meal.vercel.app
+// http://localhost:5000/
 const axiosSecure = axios.create({
-    baseURL: 'https://job-seeking-server.vercel.app'
+    baseURL: 'https://hotel-meal.vercel.app'
 })
 const useAxiosSecure = () => {
     const navigate = useNavigate();
@@ -29,8 +30,8 @@ const useAxiosSecure = () => {
         // console.log('status error in the interceptor', status);
         // for 401 or 403 logout the user and move the user to the login
         if (status === 401 || status === 403) {
-            await logOut().then(()=>{navigate('/login')}).catch(error => console.log(error))
-            ;
+            await logOut();
+            navigate('/login');
         }
         return Promise.reject(error);
     })

@@ -28,12 +28,16 @@ import AllReviewsPagination from "../pages/Order/Order/AllReviewsPagination";
 import AllServeMealsPagination from "../pages/Order/Order/AllServeMealsPagination";
 import UpcomingMeals from "../pages/Order/Order/UpcomingMeals";
 import Review from "../components/FoodCard/Review";
+import Error from "../pages/Error/Error";
 
+
+//https://hotel-meal.vercel.app
 
   export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement:<Error></Error>,
       children: [
         {
             path: '/',

@@ -9,7 +9,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateItem = () => {
-    const {name, category, recipe, price, _id} = useLoaderData();
+    const {title, category, ingredients, price, _id} = useLoaderData();
 
     const { register, handleSubmit } = useForm();
     const axiosPublic = useAxiosPublic();
@@ -17,6 +17,7 @@ const UpdateItem = () => {
     const onSubmit = async (data) => {
         console.log(data)
         // image upload to imgbb and then get an url
+        
         const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
@@ -26,10 +27,10 @@ const UpdateItem = () => {
         if (res.data.success) {
             // now send the menu item data to the server with the image url
             const menuItem = {
-                name: data.name,
+                title: data.name,
                 category: data.category,
                 price: parseFloat(data.price),
-                recipe: data.recipe,
+                ingredients: data.recipe,
                 image: res.data.data.display_url
             }
             // 
@@ -61,8 +62,9 @@ const UpdateItem = () => {
                             <span className="label-text">Recipe Name*</span>
                         </label>
                         <input
+                        
                             type="text"
-                            defaultValue={name}
+                            defaultValue={title}
                             placeholder="Recipe Name"
                             {...register('name', { required: true })}
                             required
@@ -77,11 +79,10 @@ const UpdateItem = () => {
                             <select defaultValue={category} {...register('category', { required: true })}
                                 className="select select-bordered w-full">
                                 <option disabled value="default">Select a category</option>
-                                <option value="salad">Salad</option>
-                                <option value="pizza">Pizza</option>
-                                <option value="soup">Soup</option>
-                                <option value="dessert">Dessert</option>
-                                <option value="drinks">Drinks</option>
+                                <option value="dinner">Dinner</option>
+                                <option value="breakfast">Break Fast</option>
+                                <option value="lunch">Lunch</option>
+                          
                             </select>
                         </div>
 
@@ -102,9 +103,9 @@ const UpdateItem = () => {
                     {/* recipe details */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Recipe Details</span>
+                            <span className="label-text">Ingredients</span>
                         </label>
-                        <textarea defaultValue={recipe} {...register('recipe')} className="textarea textarea-bordered h-24" placeholder="Bio"></textarea>
+                        <textarea defaultValue={ingredients} {...register('recipe')} className="textarea textarea-bordered h-24" placeholder="Bio"></textarea>
                     </div>
 
                     <div className="form-control w-full my-6">
