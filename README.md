@@ -7,3 +7,4 @@
 * only jwt token verified admin can  update meals o
 * added monogodb server to get track of the Meal
 * top liked and reviewed food are updated
+* Technologies: React.js,express.js,Mongodb,Daisy UI,Tailwind
